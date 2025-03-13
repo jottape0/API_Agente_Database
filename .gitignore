@@ -1,0 +1,107 @@
+# Ambientes virtuais
+venv/
+env/
+.env
+.venv/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDEs e editores
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+*.log
+logs/
+log/
+
+# Arquivos de ambiente e configuração
+.env
+.env.local
+.env.*.local
+config.local.py
+
+# Arquivos de teste
+.coverage
+htmlcov/
+.tox/
+.nox/
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Arquivos temporários
+*.tmp
+*.temp
+*.bak
+*.swp
+*~
+
+# Arquivos de banco de dados
+*.db
+*.sqlite
+*.sqlite3
+
+# Arquivos de documentação gerados
+docs/_build/
+site/
+
+# Arquivos específicos da sua aplicação
+*.pyc
+__pycache__/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Arquivos de dependências
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Arquivos de distribuição
+dist/
+build/
+*.egg-info/
+
+# Arquivos de chaves e certificados
+*.pem
+*.key
+*.crt
+*.cer
+*.der
+*.priv
+
+# Outros
+.DS_Store
+Thumbs.db
