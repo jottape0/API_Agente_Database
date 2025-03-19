@@ -8,15 +8,12 @@ class AskQueryRequest(BaseModel):
         default="CRM Reports",
         description="Escolha o sistema que deseja conectar: CRM Reports, Group Atendimento Recargas"
     )
-    # db_server: str = "string"
-    # db_database: str = "string"
-    # db_user: str = "string"
-    # db_password: str = "string"
+
     model: str = Field(
         default=ModelProvider.AVAILABLE_MODELS[0],
         pattern=f'^({"|".join(ModelProvider.AVAILABLE_MODELS)})$'
     )
-    api_key: str = None  # Se fornecida, usará esta chave para o OpenAI
+    api_key: str = None
 
     @field_validator('db_name')
     @classmethod

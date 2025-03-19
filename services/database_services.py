@@ -16,7 +16,6 @@ class DatabaseService:
     com diferentes bancos de dados SQL Server.
     """
     
-    # Constantes para configuração do driver
     DRIVER_NAME = "ODBC Driver 17 for SQL Server"
     
     @classmethod
@@ -86,10 +85,8 @@ class DatabaseService:
             HTTPException: Se houver erro ao criar a conexão
         """
         try:
-            # Valida os parâmetros
             cls.validate_connection_params(db_name, server, database, user, password)
             
-            # Cria a string de conexão
             connection_string = (
                 f"DRIVER={{{cls.DRIVER_NAME}}};"
                 f"SERVER={server};"
@@ -98,7 +95,6 @@ class DatabaseService:
                 f"PWD={password};"
             )
             
-            # Adiciona a conexão ao DatabaseAgent
             DatabaseAgent.add_connection(db_name, connection_string)
             
             return {"message": f"Banco de dados '{db_name}' criado com sucesso."}

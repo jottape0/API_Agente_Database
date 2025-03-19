@@ -2,7 +2,6 @@ import os
 from typing import Dict, Any, Optional
 from urllib.parse import quote_plus
 
-# Bibliotecas terceiras
 import bcrypt
 import jwt
 from dotenv import load_dotenv
@@ -11,23 +10,19 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from sqlalchemy import create_engine, text
 from sqlalchemy.engine import Engine
 
-# Carregar variáveis de ambiente
 load_dotenv()
 
-# Configurações de segurança
 SECRET_KEY = os.getenv("SECRET_KEY")
 if not SECRET_KEY:
     raise ValueError("SECRET_KEY não foi definido corretamente nas variáveis de ambiente!")
 
 ALGORITHM = "HS256"
 
-# Verificar que todas as variáveis de ambiente necessárias estão presentes
 required_env_vars = ['DB_DRIVER', 'DB_SERVER', 'DB_DATABASE', 'DB_TRUSTED_CONNECTION']
 missing_vars = [var for var in required_env_vars if not os.getenv(var)]
 if missing_vars:
     raise ValueError(f"Variáveis de ambiente ausentes: {', '.join(missing_vars)}")
 
-# Configuração da conexão com o banco de dados
 conn_str_users = (
     f"DRIVER={{{os.environ['DB_DRIVER']}}};"
     f"SERVER={os.environ['DB_SERVER']};"
@@ -38,9 +33,7 @@ conn_str_users = (
 encoded_conn_str_users = quote_plus(conn_str_users)
 users_db_uri = f"mssql+pyodbc:///?odbc_connect={encoded_conn_str_users}"
 
-# Configuração do esquema de autenticação
 bearer_scheme = HTTPBearer()
-
 
 class UserService:
     """
