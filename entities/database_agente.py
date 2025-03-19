@@ -27,18 +27,18 @@ class DatabaseAgent:
     # Dicionário de strings de conexão predefinidas
     CONNECTION_STRINGS: Dict[str, str] = {
         "Group Atendimento Recargas": (
-            "DRIVER={ODBC Driver 17 for SQL Server};"
-            "SERVER=GROUP-SI-HOMOL\\SQLEXPRESS;"
-            "DATABASE=group-atendimento-recargas-db;"
-            "UID=user.readonly;"
-            "PWD=iauh*(Wh8d9awh;"
+            f"DRIVER={{{os.getenv('DB_DRIVER')}}};"
+            f"SERVER={os.getenv('DB_SERVER')};"
+            f"DATABASE={os.getenv('DB_DATABASE')};"
+            f"UID={os.getenv('DB_USER')};"
+            f"PWD={os.getenv('DB_PASSWORD')};"
         ),
         "CRM Reports": (
-            "DRIVER={ODBC Driver 17 for SQL Server};"
-            "SERVER=GROUP-SI-API\\SQLEXPRESS;"
-            "DATABASE=zohodadosdb;"
-            "UID=user.readonly.crm;"
-            "PWD=As2@3wQ16Htyr;"
+            f"DRIVER={{{os.getenv('DB_DRIVER_CRM')}}};"
+            f"SERVER={os.getenv('DB_SERVER_CRM')};"
+            f"DATABASE={os.getenv('DB_DATABASE_CRM')};"
+            f"UID={os.getenv('DB_USER_CRM')};"
+            f"PWD={os.getenv('DB_PASSWORD_CRM')};"
         )
     }
 
