@@ -26,14 +26,14 @@ class DatabaseAgent:
 
     # Dicionário de strings de conexão predefinidas
     CONNECTION_STRINGS: Dict[str, str] = {
-        "Group Atendimento Recargas": (
+        "Banco de dados 1": (
             f"DRIVER={{{os.getenv('DB_DRIVER')}}};"
             f"SERVER={os.getenv('DB_SERVER')};"
             f"DATABASE={os.getenv('DB_DATABASE')};"
             f"UID={os.getenv('DB_USER')};"
             f"PWD={os.getenv('DB_PASSWORD')};"
         ),
-        "CRM Reports": (
+        "Banco de dados 2": (
             f"DRIVER={{{os.getenv('DB_DRIVER_CRM')}}};"
             f"SERVER={os.getenv('DB_SERVER_CRM')};"
             f"DATABASE={os.getenv('DB_DATABASE_CRM')};"
