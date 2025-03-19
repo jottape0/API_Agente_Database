@@ -1,0 +1,392 @@
+{
+  "openapi": "3.1.0",
+  "info": { "title": "FastAPI", "version": "0.1.0" },
+  "paths": {
+    "/register": {
+      "post": {
+        "summary": "Register User",
+        "description": "Registra um novo usuário no sistema",
+        "operationId": "register_user_register_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/RegisterRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": { "type": "string" },
+                  "type": "object",
+                  "title": "Response Register User Register Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "HTTPBearer": [] }]
+      }
+    },
+    "/login": {
+      "post": {
+        "summary": "Login",
+        "description": "Realiza login do usuário",
+        "operationId": "login_login_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/LoginRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/TokenResponse" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reset_password": {
+      "post": {
+        "summary": "Reset Password",
+        "description": "Reseta a senha do usuário",
+        "operationId": "reset_password_reset_password_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ResetPasswordRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": { "type": "string" },
+                  "type": "object",
+                  "title": "Response Reset Password Reset Password Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "HTTPBearer": [] }]
+      }
+    },
+    "/create_database": {
+      "post": {
+        "summary": "Create Database",
+        "description": "Cria um novo banco de dados",
+        "operationId": "create_database_create_database_post",
+        "security": [{ "HTTPBearer": [] }],
+        "parameters": [
+          {
+            "name": "db_name",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string", "title": "Db Name" }
+          },
+          {
+            "name": "server",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string", "title": "Server" }
+          },
+          {
+            "name": "database",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string", "title": "Database" }
+          },
+          {
+            "name": "user",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string", "title": "User" }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string", "title": "Password" }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" },
+                  "title": "Response Create Database Create Database Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/databases": {
+      "get": {
+        "summary": "Get Available Databases",
+        "description": "Lista todos os bancos de dados disponíveis",
+        "operationId": "get_available_databases_databases_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": { "type": "string" },
+                  "type": "array",
+                  "title": "Response Get Available Databases Databases Get"
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "HTTPBearer": [] }]
+      }
+    },
+    "/delete_database/{db_name}": {
+      "delete": {
+        "summary": "Delete Database",
+        "description": "Remove um banco de dados",
+        "operationId": "delete_database_delete_database__db_name__delete",
+        "security": [{ "HTTPBearer": [] }],
+        "parameters": [
+          {
+            "name": "db_name",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "title": "Db Name" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" },
+                  "title": "Response Delete Database Delete Database  Db Name  Delete"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/models": {
+      "get": {
+        "summary": "Get Available Models",
+        "description": "Lista todos os modelos disponíveis",
+        "operationId": "get_available_models_models_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": { "type": "string" },
+                  "type": "array",
+                  "title": "Response Get Available Models Models Get"
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "HTTPBearer": [] }]
+      }
+    },
+    "/ask": {
+      "post": {
+        "summary": "Ask Question",
+        "description": "Realiza uma consulta ao banco de dados",
+        "operationId": "ask_question_ask_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/AskQueryRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/AskQueryResponse" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "HTTPBearer": [] }]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AskQueryRequest": {
+        "properties": {
+          "question": { "type": "string", "title": "Question" },
+          "db_name": {
+            "type": "string",
+            "title": "Db Name",
+            "description": "Escolha o sistema que deseja conectar: CRM Reports, Group Atendimento Recargas",
+            "default": "CRM Reports"
+          },
+          "model": {
+            "type": "string",
+            "pattern": "^(gpt-4o-mini|gpt-4-turbo|gpt-4|gpt-3.5-turbo)$",
+            "title": "Model",
+            "default": "gpt-4o-mini"
+          },
+          "api_key": { "type": "string", "title": "Api Key" }
+        },
+        "type": "object",
+        "required": ["question"],
+        "title": "AskQueryRequest"
+      },
+      "AskQueryResponse": {
+        "properties": { "answer": { "type": "string", "title": "Answer" } },
+        "type": "object",
+        "required": ["answer"],
+        "title": "AskQueryResponse"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": { "$ref": "#/components/schemas/ValidationError" },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "LoginRequest": {
+        "properties": {
+          "username": { "type": "string", "title": "Username" },
+          "password": { "type": "string", "title": "Password" }
+        },
+        "type": "object",
+        "required": ["username", "password"],
+        "title": "LoginRequest"
+      },
+      "RegisterRequest": {
+        "properties": {
+          "username": { "type": "string", "title": "Username" },
+          "password": { "type": "string", "title": "Password" },
+          "confirm_password": { "type": "string", "title": "Confirm Password" }
+        },
+        "type": "object",
+        "required": ["username", "password", "confirm_password"],
+        "title": "RegisterRequest"
+      },
+      "ResetPasswordRequest": {
+        "properties": {
+          "username": { "type": "string", "title": "Username" },
+          "password": { "type": "string", "title": "Password" },
+          "confirm_password": { "type": "string", "title": "Confirm Password" }
+        },
+        "type": "object",
+        "required": ["username", "password", "confirm_password"],
+        "title": "ResetPasswordRequest"
+      },
+      "TokenResponse": {
+        "properties": {
+          "access_token": { "type": "string", "title": "Access Token" },
+          "token_type": {
+            "type": "string",
+            "title": "Token Type",
+            "default": "bearer"
+          }
+        },
+        "type": "object",
+        "required": ["access_token"],
+        "title": "TokenResponse"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": { "anyOf": [{ "type": "string" }, { "type": "integer" }] },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": { "type": "string", "title": "Message" },
+          "type": { "type": "string", "title": "Error Type" }
+        },
+        "type": "object",
+        "required": ["loc", "msg", "type"],
+        "title": "ValidationError"
+      }
+    },
+    "securitySchemes": { "HTTPBearer": { "type": "http", "scheme": "bearer" } }
+  }
+}
